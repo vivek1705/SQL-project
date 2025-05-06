@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>College CRUD</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+      background: #f9f9f9;
+    }
+
+    nav button {
+      margin: 10px 10px 20px 0;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    form {
+      margin-bottom: 1rem;
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    input, select {
+      margin: 5px;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    button[type="submit"] {
+      padding: 8px 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    .actions button {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>College Database CRUD</h1>
+
+  <nav>
+    <button onclick="switchTab('studentsSection')">Students</button>
+    <button onclick="switchTab('departmentsSection')">Departments</button>
+    <button onclick="switchTab('coursesSection')">Courses</button>
+    <button onclick="switchTab('enrollmentsSection')">Enrollments</button>
+  </nav>
+
+ <!-- Students Section -->
+<div id="studentsSection" class="tab-content active">
+  <h2>Students</h2>
+  <form id="studentsForm">
+    <input name="Name" placeholder="Name" required />
+    
+    <select name="Gender" required>
+      <option value="" disabled selected>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <input name="DOB" type="date" required />
+    <input name="DepartmentID" placeholder="Department ID" required />
+    <input name="Year" type="number" placeholder="Year" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>DepartmentID</th>
+        <th>Year</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="studentsList"></tbody>
+  </table>
+</div>
+
+  <!-- Departments Section -->
+  <div id="departmentsSection" class="tab-content">
+    <h2>Departments</h2>
+    <form id="departmentsForm">
+      <input name="DepartmentName" placeholder="Department Name" required />
+      <button type="submit">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Department ID</th>
+          <th>Department Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="departmentsList"></tbody>
+    </table>
+  </div>
+
+  <!-- Courses Section -->
+  <div id="coursesSection" class="tab-content">
+    <h2>Courses</h2>
+    <form id="coursesForm">
+      <input name="CourseName" placeholder="Course Name" required />
+      <input name="DepartmentID" placeholder="Department ID" required />
+      <button type="submit">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Course ID</th>
+          <th>Course Name</th>
+          <th>Department ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="coursesList"></tbody>
+    </table>
+  </div>
+
+  <!-- Enrollments Section -->
+  <div id="enrollmentsSection" class="tab-content">
+    <h2>Enrollments</h2>
+    <form id="enrollmentsForm">
+      <input name="StudentID" placeholder="Student ID" required />
+      <input name="CourseID" placeholder="Course ID" required />
+      <input name="Marks" type="number" placeholder="Marks" required />
+      <button type="submit">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Enrollment ID</th>
+          <th>Student ID</th>
+          <th>Course ID</th>
+          <th>Marks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="enrollmentsList"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function switchTab(id) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
